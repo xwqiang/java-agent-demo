@@ -1,4 +1,4 @@
-1. 设置MANNIFEST.MF
+1. 设置MANNIFEST.MF,通过pom来管理
 
 ```
 Manifest-Version: 1.0
@@ -7,10 +7,10 @@ Created-By: 1.6.0_29
 
 ```
 
-2. add tools.jar to your classpath.
+2. add tools.jar to your classpath,在启动脚本中配置
 
-3. use spi to run different cases
-
+3. 目的：
+  做一些常用的监控如：方法执行统计，答应执行的sql语句，方法中参数监控等
 ####附：agent jar中manifest的属性
 ```
 Premain-Class: 当在VM启动时，在命令行中指定代理jar时，必须在manifest中设置Premain-Class属性，值为代理类全类名，并且该代理类必须提供premain方法。否则JVM会异常终止。
@@ -21,14 +21,5 @@ Can-Retransform-Classes: true/false；标示代理类是否能够转换类定义
 Can-Set-Native-Prefix::true/false；标示代理类是否需要本地方法前缀，可选。
 ```
 
-className:
-com/blueware/agent/TestTime
-正则：com\\/.*
 
 
-常见错误：
-  Agent JAR loaded but agent failed to initialize
-  
-  
-  https://stackoverflow.com/questions/20794751/class-javalaunchhelper-is-implemented-in-both-one-of-the-two-will-be-used-whic
-  

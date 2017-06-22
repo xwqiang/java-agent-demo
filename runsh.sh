@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-rm -rf target
 mvn clean
 mvn package
 cd target

@@ -11,8 +11,8 @@ public class Target {
     private static int i = 0;
 
     public static void main(String[] args) throws InterruptedException {
-        System.out.println("com/kuyun/aa".matches("com/kuyun/.*"));
-
+//        agentClass=com/kuyun/.*
+        System.out.println("com/kuyun/test/Target".matches("com/kuyun/.*"));
         while (true) {
             f();
             Thread.sleep(2000L);
@@ -25,4 +25,6 @@ public class Target {
 
         System.out.printf("%s:test\n", ++i);
     }
+
+
 }

@@ -19,6 +19,7 @@ public class PrintTimeTransformer implements ClassFileTransformer {
         ProtectionDomain protectionDomain, byte[] classfileBuffer)
         throws IllegalClassFormatException {
         String agentClass = Agent.agentClass;
+        System.out.println("className:" + className);
         if (className.matches(agentClass)) {
             ClassReader reader = new ClassReader(classfileBuffer);
             //创建操作字节流值对象，ClassWriter.COMPUTE_MAXS:表示自动计算栈大小

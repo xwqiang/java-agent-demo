@@ -22,10 +22,16 @@ public class StartAgent {
      * started after VM startup.
      */
     public static void agentmain(String args, Instrumentation inst) throws Exception {
-        setupBootstrap(args);
-        inst.addTransformer(new PrintTimeTransformer(), true);
+        domain(args, inst);
+
         printLoaded(inst);
     }
+
+    private static void domain(String args, Instrumentation inst) {
+        setupBootstrap(args);
+        inst.addTransformer(new PrintTimeTransformer(), true);
+    }
+
 
     private static void setupBootstrap(String args) {
         argsMap = mapArgs(args);
@@ -67,8 +73,7 @@ public class StartAgent {
      * will be called. Then the real application main method will be called.
      */
     public static void premain(String args, Instrumentation inst) throws Exception {
-        setupBootstrap(args);
-        inst.addTransformer(new PrintTimeTransformer(), true);
+        domain(args, inst);
     }
 
 

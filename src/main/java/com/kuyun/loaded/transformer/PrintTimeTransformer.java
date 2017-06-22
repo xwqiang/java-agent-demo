@@ -17,8 +17,8 @@ public class PrintTimeTransformer implements ClassFileTransformer {
     public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined,
         ProtectionDomain protectionDomain, byte[] classfileBuffer)
         throws IllegalClassFormatException {
-        String agentClass = Agent.agentClass.replaceAll("\\.", "/");
-        if (className.equals(agentClass)) {
+        String agentClass = Agent.agentClass;
+        if (className.matches(agentClass)) {
             ClassReader reader = new ClassReader(classfileBuffer);
             //创建操作字节流值对象，ClassWriter.COMPUTE_MAXS:表示自动计算栈大小
             ClassWriter writer = new ClassWriter(reader, ClassWriter.COMPUTE_MAXS);

@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-mvn clean
-mvn package
 cd target
 
 RESOURCE_PATH=classes/
@@ -26,7 +24,7 @@ case "`uname`" in
       # and "connection refused" message from client.
       if [ ! -f ${TOOLS_JAR} ] ; then
           echo "Please set JAVA_VERSION to the target java version"
-#          exit 1
+          exit 1
       fi
   ;;
   *)
@@ -34,8 +32,6 @@ case "`uname`" in
   ;;
 esac
 
-## 我本地的配置
-TOOLS_JAR=${JAVA_HOME}/lib/tools.jar
 
 cpath=$CLASSPATH:${RESOURCE_PATH}:${TOOLS_JAR}
 
@@ -44,7 +40,7 @@ cpath=$CLASSPATH:${RESOURCE_PATH}:${TOOLS_JAR}
 agentJar="${PWD}/java-agent-demo-1.0.jar"
 
 ### parameters in agentmain ###
-agentMainParam="agentClass=com/kuyun/test/Target,agentMethod=f"
+agentMainParam="agentClass=com.kuyun.test.Target,agentMethod=f"
 
 ### startup main method ###
 mainClass="com.kuyun.attach.Main"

@@ -10,11 +10,12 @@ public class Target {
 
     private static int i = 0;
 
+
     public static void main(String[] args) throws InterruptedException {
-//        agentClass=com/kuyun/.*
-        System.out.println("java/lang/Throwable$PrintStreamOrWriter".matches("com/kuyun/.*"));
+        TestUtil t = new TestUtil();
         while (true) {
             f();
+            t.testFn();
             Thread.sleep(2000L);
         }
     }

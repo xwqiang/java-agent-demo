@@ -7,7 +7,7 @@ public class Settings {
 
     public static class Agent {
 
-        public static String agentMethods;
+        public static String agentMethod;
         public static String agentClass;
     }
 }

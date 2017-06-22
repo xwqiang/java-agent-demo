@@ -10,13 +10,13 @@
   <version>1.0</version>
 
   <dependencies>
-    <dependency>
-      <groupId>com.sun</groupId>
-      <artifactId>tools</artifactId>
-      <systemPath>${java.home}/../lib/tools.jar</systemPath>
-      <scope>system</scope>
-      <version>1.0</version>
-    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>com.sun</groupId>-->
+      <!--<artifactId>tools</artifactId>-->
+      <!--<systemPath>${java.home}/../lib/tools.jar</systemPath>-->
+      <!--<scope>system</scope>-->
+      <!--<version>1.0</version>-->
+    <!--</dependency>-->
 
     <!-- https://mvnrepository.com/artifact/org.ow2.asm/asm -->
     <dependency>

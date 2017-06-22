@@ -1,6 +1,7 @@
 package com.kuyun.loaded;
 
 import com.kuyun.loaded.transformer.PrintTimeTransformer;
+import com.kuyun.shared.Settings.Agent;
 import java.lang.instrument.Instrumentation;
 import java.lang.instrument.UnmodifiableClassException;
 import java.util.HashMap;
@@ -29,6 +30,8 @@ public class StartAgent {
 
     private static void setupBootstrap(String args) {
         argsMap = mapArgs(args);
+        Agent.agentClass = argsMap.get("agentClass");
+        Agent.agentMethod = argsMap.get("agentMethod");
     }
 
     /**

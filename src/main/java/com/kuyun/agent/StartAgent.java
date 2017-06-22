@@ -16,7 +16,6 @@ public class StartAgent {
 
     private static Map<String, String> argsMap;
 
-
     /**
      * JVM hook to dynamically load javaagent at runtime.
      * <p/>
@@ -26,6 +25,8 @@ public class StartAgent {
     public static void agentmain(String args, Instrumentation inst) throws Exception {
 
         printVmDetail();
+
+        printArguments(args);
 
         domain(args, inst);
 
@@ -48,7 +49,8 @@ public class StartAgent {
 
     private static void retransformClasses(Instrumentation inst) throws UnmodifiableClassException {
 
-        System.out.printf("retransfered classes = %s ,size = %s", AgentContext.transferedClass, AgentContext.transferedClass.size());
+        System.out.printf("retransfered classes = %s ,size = %s\n", AgentContext.transferedClass,
+            AgentContext.transferedClass.size());
 
         for (Class klass : inst.getAllLoadedClasses()) {
 
@@ -123,4 +125,9 @@ public class StartAgent {
         return argMap;
     }
 
+    private static void printArguments(String args) {
+
+        System.out.printf("arguments : '%s'\n", args);
+
+    }
 }

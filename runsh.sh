@@ -35,6 +35,7 @@ case "`uname`" in
   ;;
 esac
 
+TOOLS_JAR=${JAVA_HOME}/lib/tools.jar
 
 cpath=$CLASSPATH:${RESOURCE_PATH}:${TOOLS_JAR}
 

@@ -25,7 +25,6 @@ public class TimeClassVisitor extends ClassVisitor {
         String[] exceptions) {
         MethodVisitor mv = cv.visitMethod(access, name, desc, signature, exceptions);
         final String key = className + name + desc;
-        String durationClzName = TimeUtil.class.getName().replaceAll("\\.", "/");
         //过来待修改类的构造函数
         if (!name.equals("<init>") && mv != null) {
             mv = new AdviceAdapter(Opcodes.ASM5, mv, access, name, desc) {
@@ -34,7 +33,7 @@ public class TimeClassVisitor extends ClassVisitor {
                 public void onMethodEnter() {
                     //相当于com.blueware.agent.TimeUtil.setStartTime("key");
                     this.visitLdcInsn(key);
-                    this.visitMethodInsn(Opcodes.INVOKESTATIC, durationClzName, "setStartTime",
+                    this.visitMethodInsn(Opcodes.INVOKESTATIC, "com/kuyun/loaded/visitor/duration/TimeClassVisitor", "setStartTime",
                         "(Ljava/lang/String;)V", false);
                 }
 
@@ -43,7 +42,7 @@ public class TimeClassVisitor extends ClassVisitor {
                 public void onMethodExit(int opcode) {
                     //相当于com.blueware.agent.TimeUtil.setEndTime("key");
                     this.visitLdcInsn(key);
-                    this.visitMethodInsn(Opcodes.INVOKESTATIC, durationClzName, "setEndTime",
+                    this.visitMethodInsn(Opcodes.INVOKESTATIC, "com/kuyun/loaded/visitor/duration/TimeClassVisitor", "setEndTime",
                         "(Ljava/lang/String;)V", false);
                     //向栈中压入类名称
                     this.visitLdcInsn(className);
@@ -52,7 +51,7 @@ public class TimeClassVisitor extends ClassVisitor {
                     //向栈中压入方法描述
                     this.visitLdcInsn(desc);
                     //相当于com.blueware.agent.TimeUtil.getExclusiveTime("com/kuyun/util/TestTime","testTime");
-                    this.visitMethodInsn(Opcodes.INVOKESTATIC, durationClzName, "getExclusiveTime",
+                    this.visitMethodInsn(Opcodes.INVOKESTATIC, "com/kuyun/loaded/visitor/duration/TimeClassVisitor", "getExclusiveTime",
                         "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)J", false);
                 }
             };

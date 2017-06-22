@@ -14,7 +14,7 @@ for file in lib/*.jar; do
 done
 
 ### the jar to be agented ###
-agentJar="/Users/xuwuqiang/Documents/git/java-agent-demo/target/java-agent-demo-1.0.jar"
+agentJar="${PWD}/java-agent-demo-1.0.jar"
 
 ### parameters in agentmain ###
 agentMainParam="agentClass=com.kuyun.test.Target,agentMethod=f"

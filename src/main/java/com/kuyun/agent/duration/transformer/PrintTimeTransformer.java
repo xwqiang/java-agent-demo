@@ -1,7 +1,7 @@
 package com.kuyun.agent.duration.transformer;
 
 
-import com.kuyun.agent.TransferContext;
+import com.kuyun.agent.AgentContext;
 import com.kuyun.agent.duration.visitor.TimeClassVisitor;
 import com.kuyun.shared.Settings.Agent;
 import java.lang.instrument.ClassFileTransformer;
@@ -25,7 +25,7 @@ public class PrintTimeTransformer implements ClassFileTransformer {
 
             System.out.printf("transfer class '%s' with pattern '%s' by PrintTimeTransformer\n", className, agentClass);
 
-            TransferContext.transferedClass.add(agentClass);
+            AgentContext.transferedClass.add(agentClass);
 
             ClassReader reader = new ClassReader(classfileBuffer);
 

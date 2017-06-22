@@ -6,7 +6,7 @@ import java.util.Set;
 /**
  * Created by xuwuqiang on 2017/6/22.
  */
-public class TransferContext {
+public class AgentContext {
 
     public static Set<String> transferedClass = new HashSet<String>();
 

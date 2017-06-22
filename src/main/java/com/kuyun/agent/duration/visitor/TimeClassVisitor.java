@@ -26,7 +26,7 @@ public class TimeClassVisitor extends ClassVisitor {
         MethodVisitor mv = cv.visitMethod(access, name, desc, signature, exceptions);
         final String key = className + name + desc;
         //过来待修改类的构造函数
-        if (!name.equals("<init>") && mv != null && access == Opcodes.ACC_PUBLIC) {
+        if (!name.equals("<init>") && mv != null) {
             mv = new AdviceAdapter(Opcodes.ASM5, mv, access, name, desc) {
                 //方法进入时获取开始时间
                 @Override

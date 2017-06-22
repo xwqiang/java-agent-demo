@@ -49,9 +49,9 @@ public class StartAgent {
     private static void retransformClasses(Instrumentation inst) throws UnmodifiableClassException {
         for (Class klass : inst.getAllLoadedClasses()) {
 
-            System.out.printf("retransfered classes = %s ,size = %s", TransferContext.transferedClass, TransferContext.transferedClass.size());
+            System.out.printf("retransfered classes = %s ,size = %s", AgentContext.transferedClass, AgentContext.transferedClass.size());
 
-            if (TransferContext.transferedClass.contains(klass.getName())) {
+            if (AgentContext.transferedClass.contains(klass.getName())) {
 
                 System.out.printf("retransfer class: '%s'\n", klass.getName());
 

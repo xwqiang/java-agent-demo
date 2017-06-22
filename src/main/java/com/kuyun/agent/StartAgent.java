@@ -79,7 +79,7 @@ public class StartAgent {
 
     private static void printLoaded(Instrumentation inst) throws UnmodifiableClassException {
         for (Class klass : inst.getAllLoadedClasses()) {
-            if (inst.isModifiableClass(klass)) {
+            if (inst.isRetransformClassesSupported() && inst.isModifiableClass(klass)) {
                 inst.retransformClasses(klass);
             }
         }

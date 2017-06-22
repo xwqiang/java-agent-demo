@@ -12,7 +12,7 @@ public class Target {
 
     public static void main(String[] args) throws InterruptedException {
 //        agentClass=com/kuyun/.*
-        System.out.println("com/kuyun/test/Target".matches("com/kuyun/.*"));
+        System.out.println("java/lang/Throwable$PrintStreamOrWriter".matches("com/kuyun/.*"));
         while (true) {
             f();
             Thread.sleep(2000L);

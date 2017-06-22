@@ -63,8 +63,8 @@
             <!--<addDefaultSpecificationEntries> true </addDefaultSpecificationEntries>-->
             <!--</manifest>-->
             <manifestEntries>
-              <Agent-Class>com.kuyun.launch.StartAgent</Agent-Class>
-              <Premain-Class>com.kuyun.launch.StartAgent</Premain-Class>
+              <Agent-Class>com.kuyun.agent.StartAgent</Agent-Class>
+              <Premain-Class>com.kuyun.agent.StartAgent</Premain-Class>
               <Can-Redefine-Classes>true</Can-Redefine-Classes>
               <Can-Retransform-Classes>true</Can-Retransform-Classes>
             </manifestEntries>

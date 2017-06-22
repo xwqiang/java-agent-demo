@@ -4,6 +4,8 @@ import com.kuyun.agent.duration.transformer.PrintTimeTransformer;
 import com.kuyun.shared.Settings.Agent;
 import java.lang.instrument.Instrumentation;
 import java.lang.instrument.UnmodifiableClassException;
+import java.lang.management.ManagementFactory;
+import java.lang.management.RuntimeMXBean;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,7 +26,27 @@ public class StartAgent {
     public static void agentmain(String args, Instrumentation inst) throws Exception {
         domain(args, inst);
 
-        printLoaded(inst);
+        retransformClasses(inst);
+    }
+
+
+    /**
+     * JVM hook to statically load the javaagent at startup.
+     * <p/>
+     * After the Java Virtual Machine (JVM) has initialized, the premain method
+     * will be called. Then the real application main method will be called.
+     */
+    public static void premain(String args, Instrumentation inst) throws Exception {
+        domain(args, inst);
+    }
+
+
+    private static void retransformClasses(Instrumentation inst) throws UnmodifiableClassException {
+        for (Class klass : inst.getAllLoadedClasses()) {
+            if (inst.isRetransformClassesSupported() && inst.isModifiableClass(klass)) {
+                inst.retransformClasses(klass);
+            }
+        }
     }
 
     private static void domain(String args, Instrumentation inst) {
@@ -35,8 +57,27 @@ public class StartAgent {
 
     private static void setupBootstrap(String args) {
         argsMap = mapArgs(args);
-        Agent.agentClass = argsMap.get("agentClass");
-        Agent.agentMethod = argsMap.get("agentMethod");
+        Agent.fromArgsMap(argsMap);
+        printVmDetail();
+    }
+
+
+    /**
+     * 打印jvm的详细信息
+     */
+    private static void printVmDetail() {
+        RuntimeMXBean runtime = ManagementFactory.getRuntimeMXBean();
+        System.out.println("进程PID: \t" + runtime.getName().split("@")[0]);
+        System.out.println("jvm规范名称: \t" + runtime.getSpecName());
+        System.out.println("jvm规范运营商: \t" + runtime.getSpecVendor());
+        System.out.println("jvm规范版本: \t" + runtime.getSpecVersion());
+        System.out.println("jvm运营商: \t" + runtime.getVmVendor());
+        System.out.println("jvm实现版本: \t" + runtime.getVmVersion());
+        System.out.println("类路径: \t" + runtime.getClassPath());
+        System.out.println("引导类路径: \t" + runtime.getBootClassPath());
+        System.out.println("库路径: \t" + runtime.getLibraryPath());
+        System.out.println();
+
     }
 
     /**
@@ -65,23 +106,4 @@ public class StartAgent {
         return argMap;
     }
 
-
-    /**
-     * JVM hook to statically load the javaagent at startup.
-     * <p/>
-     * After the Java Virtual Machine (JVM) has initialized, the premain method
-     * will be called. Then the real application main method will be called.
-     */
-    public static void premain(String args, Instrumentation inst) throws Exception {
-        domain(args, inst);
-    }
-
-
-    private static void printLoaded(Instrumentation inst) throws UnmodifiableClassException {
-        for (Class klass : inst.getAllLoadedClasses()) {
-            if (inst.isRetransformClassesSupported() && inst.isModifiableClass(klass)) {
-                inst.retransformClasses(klass);
-            }
-        }
-    }
 }

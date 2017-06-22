@@ -44,6 +44,6 @@ agentMainParam="agentClass=com/kuyun/test/Target,agentMethod=f"
 #agentMainParam="agentClass=com/kuyun/.*,agentMethod=f"
 
 ### startup main method ###
-mainClass="com.kuyun.attach.Main"
+mainClass="com.kuyun.launch.Main"
 
 java -cp ${cpath} -Dagent.Jar="${agentJar}=${agentMainParam}" ${mainClass} $1

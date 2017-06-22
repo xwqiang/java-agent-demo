@@ -47,6 +47,6 @@ agentJar="${PWD}/java-agent-demo-1.0.jar"
 agentMainParam="agentClass=com/kuyun/test/Target,agentMethod=f"
 
 ### startup main method ###
-mainClass="com.kuyun.attach.Main"
+mainClass="com.kuyun.launch.Main"
 
 java -cp ${cpath} -Dagent.Jar="${agentJar}=${agentMainParam}" ${mainClass} $1

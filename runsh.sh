@@ -34,7 +34,7 @@ case "`uname`" in
   ;;
 esac
 
-## 我本地的配置
+## 我本地(maxOS)的配置
 TOOLS_JAR=${JAVA_HOME}/lib/tools.jar
 
 cpath=$CLASSPATH:${RESOURCE_PATH}:${TOOLS_JAR}

@@ -40,7 +40,8 @@ cpath=$CLASSPATH:${RESOURCE_PATH}:${TOOLS_JAR}
 agentJar="${PWD}/java-agent-demo-1.0.jar"
 
 ### parameters in agentmain ###
-agentMainParam="agentClass=com.kuyun.test.Target,agentMethod=f"
+agentMainParam="agentClass=com/kuyun/test/Target,agentMethod=f"
+#agentMainParam="agentClass=com/kuyun/.*,agentMethod=f"
 
 ### startup main method ###
 mainClass="com.kuyun.attach.Main"

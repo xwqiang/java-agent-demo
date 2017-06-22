@@ -11,6 +11,7 @@ public class Target {
     private static int i = 0;
 
     public static void main(String[] args) throws InterruptedException {
+        System.out.println("com/kuyun/aa".matches("com/kuyun/.*"));
 
         while (true) {
             f();

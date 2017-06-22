@@ -25,7 +25,7 @@ public class StartAgent {
 
         setupBootstrap(args);
         inst.addTransformer(new PrintTimeTransformer(), true);
-        printLoaded(inst);
+//        printLoaded(inst);
     }
 
     private static void setupBootstrap(String args) {

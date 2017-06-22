@@ -21,7 +21,6 @@ public class StartAgent {
      * started after VM startup.
      */
     public static void agentmain(String args, Instrumentation inst) throws Exception {
-
         setupBootstrap(args);
         inst.addTransformer(new PrintTimeTransformer(), true);
     }
@@ -30,7 +29,7 @@ public class StartAgent {
         argsMap = mapArgs(args);
         Agent.agentClass = argsMap.get("agentClass");
         Agent.agentMethod = argsMap.get("agentMethod");
-        System.out.println("agentClass:" + Agent.agentClass);
+        System.out.println("agentClass : " + Agent.agentClass);
     }
 
     /**

@@ -23,6 +23,7 @@ public class StartAgent {
     public static void agentmain(String args, Instrumentation inst) throws Exception {
         setupBootstrap(args);
         inst.addTransformer(new PrintTimeTransformer(), true);
+        Thread.sleep(10000L);
     }
 
     private static void setupBootstrap(String args) {

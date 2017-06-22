@@ -12,6 +12,7 @@ public class Target {
 
 
     public static void main(String[] args) throws InterruptedException {
+        System.out.println("afj$0".contains("$"));
         TestUtil t = new TestUtil();
         while (true) {
             f();

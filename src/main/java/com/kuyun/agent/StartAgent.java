@@ -1,9 +1,8 @@
-package com.kuyun.loaded;
+package com.kuyun.agent;
 
-import com.kuyun.loaded.transformer.PrintTimeTransformer;
+import com.kuyun.agent.transformer.PrintTimeTransformer;
 import com.kuyun.shared.Settings.Agent;
 import java.lang.instrument.Instrumentation;
-import java.lang.instrument.UnmodifiableClassException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,7 +24,6 @@ public class StartAgent {
 
         setupBootstrap(args);
         inst.addTransformer(new PrintTimeTransformer(), true);
-//        printLoaded(inst);
     }
 
     private static void setupBootstrap(String args) {
@@ -61,13 +59,7 @@ public class StartAgent {
         return argMap;
     }
 
-    private static void printLoaded(Instrumentation inst) throws UnmodifiableClassException {
-        for (Class klass : inst.getAllLoadedClasses()) {
-            if (inst.isModifiableClass(klass)) {
-                inst.retransformClasses(klass);
-            }
-        }
-    }
+
 
 
     /**
@@ -77,6 +69,7 @@ public class StartAgent {
      * will be called. Then the real application main method will be called.
      */
     public static void premain(String args, Instrumentation inst) throws Exception {
-        inst.addTransformer(new PrintTimeTransformer());
+        setupBootstrap(args);
+        inst.addTransformer(new PrintTimeTransformer(), true);
     }
 }

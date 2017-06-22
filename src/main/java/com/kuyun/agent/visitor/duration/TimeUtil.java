@@ -1,10 +1,12 @@
-package com.kuyun.loaded.visitor.duration;
+package com.kuyun.agent.visitor.duration;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * All methods and fileds can not be changed for reason that it was referenced by <code>PrintTimeTrancsformer.java</code>
+ * All methods and fileds can not be changed for reason that it was referenced by
+ * <code>TimeClassVisitor.java</code>
+ *
  * Created by xuwuqiang on 2017/6/19.
  */
 public class TimeUtil {

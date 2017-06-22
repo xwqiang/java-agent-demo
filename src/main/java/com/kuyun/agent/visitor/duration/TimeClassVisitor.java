@@ -1,4 +1,4 @@
-package com.kuyun.loaded.visitor.duration;
+package com.kuyun.agent.visitor.duration;
 
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.MethodVisitor;
@@ -31,18 +31,18 @@ public class TimeClassVisitor extends ClassVisitor {
                 //方法进入时获取开始时间
                 @Override
                 public void onMethodEnter() {
-                    //相当于com.blueware.agent.TimeUtil.setStartTime("key");
                     this.visitLdcInsn(key);
-                    this.visitMethodInsn(Opcodes.INVOKESTATIC, "com/kuyun/loaded/visitor/duration/TimeUtil", "setStartTime",
+                    this.visitMethodInsn(Opcodes.INVOKESTATIC, "com/kuyun/agent/visitor/duration/TimeUtil",
+                        "setStartTime",
                         "(Ljava/lang/String;)V", false);
                 }
 
                 //方法退出时获取结束时间并计算执行时间
                 @Override
                 public void onMethodExit(int opcode) {
-                    //相当于com.blueware.agent.TimeUtil.setEndTime("key");
                     this.visitLdcInsn(key);
-                    this.visitMethodInsn(Opcodes.INVOKESTATIC, "com/kuyun/loaded/visitor/duration/TimeUtil", "setEndTime",
+                    this.visitMethodInsn(Opcodes.INVOKESTATIC, "com/kuyun/agent/visitor/duration/TimeUtil",
+                        "setEndTime",
                         "(Ljava/lang/String;)V", false);
                     //向栈中压入类名称
                     this.visitLdcInsn(className);
@@ -50,8 +50,8 @@ public class TimeClassVisitor extends ClassVisitor {
                     this.visitLdcInsn(name);
                     //向栈中压入方法描述
                     this.visitLdcInsn(desc);
-                    //相当于com.blueware.agent.TimeUtil.getExclusiveTime("com/kuyun/util/TestTime","testTime");
-                    this.visitMethodInsn(Opcodes.INVOKESTATIC, "com/kuyun/loaded/visitor/duration/TimeUtil", "getExclusiveTime",
+                    this.visitMethodInsn(Opcodes.INVOKESTATIC, "com/kuyun/agent/visitor/duration/TimeUtil",
+                        "getExclusiveTime",
                         "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)J", false);
                 }
             };

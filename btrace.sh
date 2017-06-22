@@ -33,7 +33,7 @@ case "`uname`" in
 esac
 
 
-cpath=$CLASSPATH:${RESOURCE_PATH}:${TOOLS_JAR}
+cpath=${RESOURCE_PATH}:${TOOLS_JAR}
 
 
 ### the jar to be agented ###

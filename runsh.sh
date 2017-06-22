@@ -37,7 +37,7 @@ esac
 ## 我本地(maxOS)的配置
 TOOLS_JAR=${JAVA_HOME}/lib/tools.jar
 
-cpath=$CLASSPATH:${RESOURCE_PATH}:${TOOLS_JAR}
+cpath=${RESOURCE_PATH}:${TOOLS_JAR}
 
 
 ### the jar to be agented ###

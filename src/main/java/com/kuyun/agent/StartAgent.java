@@ -24,6 +24,9 @@ public class StartAgent {
      * started after VM startup.
      */
     public static void agentmain(String args, Instrumentation inst) throws Exception {
+
+        printVmDetail();
+
         domain(args, inst);
 
         retransformClasses(inst);
@@ -37,31 +40,41 @@ public class StartAgent {
      * will be called. Then the real application main method will be called.
      */
     public static void premain(String args, Instrumentation inst) throws Exception {
+
         domain(args, inst);
+
     }
 
 
     private static void retransformClasses(Instrumentation inst) throws UnmodifiableClassException {
         for (Class klass : inst.getAllLoadedClasses()) {
-            System.out.printf("retransfered classes = %s ,size = %s", TransferContext.transferedClass,
-                TransferContext.transferedClass.size());
+
+            System.out.printf("retransfered classes = %s ,size = %s", TransferContext.transferedClass, TransferContext.transferedClass.size());
+
             if (TransferContext.transferedClass.contains(klass.getName())) {
+
                 System.out.printf("retransfer class: '%s'\n", klass.getName());
+
                 inst.retransformClasses(klass);
+
             }
         }
     }
 
     private static void domain(String args, Instrumentation inst) {
+
         setupBootstrap(args);
+
         inst.addTransformer(new PrintTimeTransformer(), true);
+
     }
 
 
     private static void setupBootstrap(String args) {
+
         argsMap = mapArgs(args);
+
         Agent.fromArgsMap(argsMap);
-        printVmDetail();
     }
 
 

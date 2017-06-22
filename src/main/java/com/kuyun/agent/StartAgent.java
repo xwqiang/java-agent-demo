@@ -3,6 +3,7 @@ package com.kuyun.agent;
 import com.kuyun.agent.duration.transformer.PrintTimeTransformer;
 import com.kuyun.shared.Settings.Agent;
 import java.lang.instrument.Instrumentation;
+import java.lang.instrument.UnmodifiableClassException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,7 +24,7 @@ public class StartAgent {
     public static void agentmain(String args, Instrumentation inst) throws Exception {
         setupBootstrap(args);
         inst.addTransformer(new PrintTimeTransformer(), true);
-        Thread.sleep(10000L);
+        printLoaded(inst);
     }
 
     private static void setupBootstrap(String args) {
@@ -59,8 +60,6 @@ public class StartAgent {
     }
 
 
-
-
     /**
      * JVM hook to statically load the javaagent at startup.
      * <p/>
@@ -70,5 +69,14 @@ public class StartAgent {
     public static void premain(String args, Instrumentation inst) throws Exception {
         setupBootstrap(args);
         inst.addTransformer(new PrintTimeTransformer(), true);
+    }
+
+
+    private static void printLoaded(Instrumentation inst) throws UnmodifiableClassException {
+        for (Class klass : inst.getAllLoadedClasses()) {
+            if (inst.isModifiableClass(klass)) {
+                inst.retransformClasses(klass);
+            }
+        }
     }
 }

@@ -9,7 +9,7 @@ import java.io.IOException;
 /**
  * Created by xuwuqiang on 2017/6/19.
  */
-public class Test {
+public class Main {
 
     public static void main(String[] args) {
         try {

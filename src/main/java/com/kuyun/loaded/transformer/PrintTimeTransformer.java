@@ -1,6 +1,7 @@
 package com.kuyun.loaded.transformer;
 
-import com.kuyun.loaded.visitor.TimeClassVisitor;
+import com.kuyun.loaded.visitor.duration.TimeClassVisitor;
+import com.kuyun.shared.Settings.Agent;
 import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.IllegalClassFormatException;
 import java.security.ProtectionDomain;
@@ -16,9 +17,7 @@ public class PrintTimeTransformer implements ClassFileTransformer {
     public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined,
         ProtectionDomain protectionDomain, byte[] classfileBuffer)
         throws IllegalClassFormatException {
-        System.out.println("transform: " + className);
-        if (className.equals("com.kuyun.test.Target") || className.equals("com/kuyun/test/Target")) {
-            System.err.println("------------------------target-----------------");
+        if (className.equals(Agent.agentClass)) {
             ClassReader reader = new ClassReader(classfileBuffer);
             //创建操作字节流值对象，ClassWriter.COMPUTE_MAXS:表示自动计算栈大小
             ClassWriter writer = new ClassWriter(reader, ClassWriter.COMPUTE_MAXS);

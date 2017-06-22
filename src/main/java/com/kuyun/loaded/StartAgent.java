@@ -3,11 +3,15 @@ package com.kuyun.loaded;
 import com.kuyun.loaded.transformer.PrintTimeTransformer;
 import java.lang.instrument.Instrumentation;
 import java.lang.instrument.UnmodifiableClassException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by xuwuqiang on 2017/6/19.
  */
-public class LoadedAgent {
+public class StartAgent {
+
+    private static Map<String, String> argsMap;
 
 
     /**
@@ -17,15 +21,46 @@ public class LoadedAgent {
      * started after VM startup.
      */
     public static void agentmain(String args, Instrumentation inst) throws Exception {
+
+        setupBootstrap(args);
         inst.addTransformer(new PrintTimeTransformer(), true);
         printLoaded(inst);
+    }
+
+    private static void setupBootstrap(String args) {
+        argsMap = mapArgs(args);
+    }
+
+    /**
+     * @param args : agentmain 传过来的参数
+     */
+    private static Map<String, String> mapArgs(String args) {
+        if (args == null) {
+            args = "";
+        }
+        String[] pairs = args.split(",");
+
+        Map<String, String> argMap = new HashMap<String, String>();
+        for (String s : pairs) {
+            int i = s.indexOf('=');
+            String key, value = "";
+            if (i != -1) {
+                key = s.substring(0, i).trim();
+                if (i + 1 < s.length()) {
+                    value = s.substring(i + 1).trim();
+                }
+            } else {
+                key = s;
+            }
+            argMap.put(key, value);
+        }
+        return argMap;
     }
 
     private static void printLoaded(Instrumentation inst) throws UnmodifiableClassException {
         for (Class klass : inst.getAllLoadedClasses()) {
             if (inst.isModifiableClass(klass)) {
                 inst.retransformClasses(klass);
-//                System.out.println(klass.getName());
             }
         }
     }

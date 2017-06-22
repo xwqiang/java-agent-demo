@@ -13,8 +13,13 @@ for file in lib/*.jar; do
     cpath=$cpath:$file
 done
 
-pid=`ps -ef|grep Target|grep -v grep|awk '{print $2}'`
+### the jar to be agented ###
 agentJar="/Users/xuwuqiang/Documents/git/java-agent-demo/target/java-agent-demo-1.0.jar"
-mainClass="com.kuyun.attach.Test"
 
-java -cp ${cpath} -Dagent.Jar="${agentJar}" ${mainClass} ${pid}
+### parameters in agentmain ###
+agentMainParam="agentClass=Test,agentMethod=f"
+
+### startup main method ###
+mainClass="com.kuyun.attach.Main"
+
+java -cp ${cpath} -Dagent.Jar="${agentJar}=${agentMainParam}" ${mainClass} $1

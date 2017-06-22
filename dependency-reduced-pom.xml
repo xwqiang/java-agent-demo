@@ -21,8 +21,8 @@
         <configuration>
           <archive>
             <manifestEntries>
-              <Agent-Class>com.kuyun.loaded.LoadedAgent</Agent-Class>
-              <Premain-Class>com.kuyun.loaded.LoadedAgent</Premain-Class>
+              <Agent-Class>com.kuyun.loaded.StartAgent</Agent-Class>
+              <Premain-Class>com.kuyun.loaded.StartAgent</Premain-Class>
               <Can-Redefine-Classes>true</Can-Redefine-Classes>
               <Can-Retransform-Classes>true</Can-Retransform-Classes>
             </manifestEntries>

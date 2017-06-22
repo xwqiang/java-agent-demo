@@ -32,6 +32,7 @@ public class StartAgent {
         argsMap = mapArgs(args);
         Agent.agentClass = argsMap.get("agentClass");
         Agent.agentMethod = argsMap.get("agentMethod");
+        System.out.println("agentClass:" + Agent.agentClass);
     }
 
     /**

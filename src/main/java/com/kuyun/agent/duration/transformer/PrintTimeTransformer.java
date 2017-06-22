@@ -1,6 +1,7 @@
-package com.kuyun.agent.transformer;
+package com.kuyun.agent.duration.transformer;
 
-import com.kuyun.agent.visitor.duration.TimeClassVisitor;
+
+import com.kuyun.agent.duration.visitor.TimeClassVisitor;
 import com.kuyun.shared.Settings.Agent;
 import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.IllegalClassFormatException;

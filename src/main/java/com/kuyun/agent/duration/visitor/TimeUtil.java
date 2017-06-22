@@ -1,4 +1,4 @@
-package com.kuyun.agent.visitor.duration;
+package com.kuyun.agent.duration.visitor;
 
 import java.util.HashMap;
 import java.util.Map;

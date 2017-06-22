@@ -1,4 +1,4 @@
-package com.kuyun.agent.visitor.duration;
+package com.kuyun.agent.duration.visitor;
 
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.MethodVisitor;
@@ -32,7 +32,7 @@ public class TimeClassVisitor extends ClassVisitor {
                 @Override
                 public void onMethodEnter() {
                     this.visitLdcInsn(key);
-                    this.visitMethodInsn(Opcodes.INVOKESTATIC, "com/kuyun/agent/visitor/duration/TimeUtil",
+                    this.visitMethodInsn(Opcodes.INVOKESTATIC, "com/kuyun/agent/duration/visitor/TimeUtil",
                         "setStartTime",
                         "(Ljava/lang/String;)V", false);
                 }
@@ -41,7 +41,7 @@ public class TimeClassVisitor extends ClassVisitor {
                 @Override
                 public void onMethodExit(int opcode) {
                     this.visitLdcInsn(key);
-                    this.visitMethodInsn(Opcodes.INVOKESTATIC, "com/kuyun/agent/visitor/duration/TimeUtil",
+                    this.visitMethodInsn(Opcodes.INVOKESTATIC, "com/kuyun/agent/duration/visitor/TimeUtil",
                         "setEndTime",
                         "(Ljava/lang/String;)V", false);
                     //向栈中压入类名称
@@ -50,7 +50,7 @@ public class TimeClassVisitor extends ClassVisitor {
                     this.visitLdcInsn(name);
                     //向栈中压入方法描述
                     this.visitLdcInsn(desc);
-                    this.visitMethodInsn(Opcodes.INVOKESTATIC, "com/kuyun/agent/visitor/duration/TimeUtil",
+                    this.visitMethodInsn(Opcodes.INVOKESTATIC, "com/kuyun/agent/duration/visitor/TimeUtil",
                         "getExclusiveTime",
                         "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)J", false);
                 }

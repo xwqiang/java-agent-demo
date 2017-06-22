@@ -1,6 +1,6 @@
 package com.kuyun.agent;
 
-import com.kuyun.agent.transformer.PrintTimeTransformer;
+import com.kuyun.agent.duration.transformer.PrintTimeTransformer;
 import com.kuyun.shared.Settings.Agent;
 import java.lang.instrument.Instrumentation;
 import java.util.HashMap;

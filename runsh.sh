@@ -26,7 +26,7 @@ case "`uname`" in
       # and "connection refused" message from client.
       if [ ! -f ${TOOLS_JAR} ] ; then
           echo "Please set JAVA_VERSION to the target java version"
-          exit 1
+#          exit 1
       fi
   ;;
   *)

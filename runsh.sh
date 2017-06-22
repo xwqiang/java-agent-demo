@@ -17,7 +17,7 @@ done
 agentJar="/Users/xuwuqiang/Documents/git/java-agent-demo/target/java-agent-demo-1.0.jar"
 
 ### parameters in agentmain ###
-agentMainParam="agentClass=Test,agentMethod=f"
+agentMainParam="agentClass=com.kuyun.test.Target,agentMethod=f"
 
 ### startup main method ###
 mainClass="com.kuyun.attach.Main"

@@ -48,6 +48,7 @@ public class StartAgent {
 
                     inst.retransformClasses(klass);
                 }catch (Throwable e) {
+                    System.out.println("error when retransfor class :" + klass);
                     e.printStackTrace();
                 }
             }

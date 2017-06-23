@@ -45,7 +45,7 @@ agentJar="${PWD}/java-agent-demo-1.0.jar"
 
 ### parameters in agentmain ###
 #agentMainParam="agentClass=com/kuyun/test/Target,agentMethod=f"
-agentMainParam="agentClass=com/kuyun/test/.*"
+agentMainParam="agentClass=com/kuyun/cards/.*"
 
 ### startup main method ###
 mainClass="com.kuyun.launch.Main"

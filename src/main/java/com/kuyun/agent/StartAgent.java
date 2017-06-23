@@ -30,7 +30,7 @@ public class StartAgent {
 
         domain(args, inst);
 
-//        retransformClasses(inst);
+        retransformClasses(inst);
     }
 
 
@@ -49,18 +49,14 @@ public class StartAgent {
 
     private static void retransformClasses(Instrumentation inst) throws UnmodifiableClassException {
 
-        System.out.printf("retransfered classes = %s ,size = %s\n", AgentContext.transferedClass,
-            AgentContext.transferedClass.size());
-
         for (Class klass : inst.getAllLoadedClasses()) {
 
-            if (AgentContext.transferedClass.contains(klass.getName())) {
-
-                System.out.printf("retransfer class: '%s'\n", klass.getName());
+            if (inst.isRetransformClassesSupported() && inst.isRedefineClassesSupported() && inst.isModifiableClass(klass)) {
 
                 inst.retransformClasses(klass);
 
             }
+
         }
     }
 

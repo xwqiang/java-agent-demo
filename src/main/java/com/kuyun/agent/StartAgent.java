@@ -30,7 +30,7 @@ public class StartAgent {
 
         domain(args, inst);
 
-//        retransformClasses(inst);
+        retransformClasses(inst);
     }
 
 

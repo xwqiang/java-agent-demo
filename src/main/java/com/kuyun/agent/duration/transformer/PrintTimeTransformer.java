@@ -40,6 +40,6 @@ public class PrintTimeTransformer implements ClassFileTransformer {
 
         }
 
-        return classfileBuffer;
+        return null;
     }
 }

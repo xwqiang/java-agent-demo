@@ -15,4 +15,5 @@ done
 mainClass="com.kuyun.test.Target"
 
 java -noverify -XX:-UseSplitVerifier -cp ${cpath}  ${mainClass}
+#java  -cp ${cpath}  com.kuyun.util.KillSignalHandler
 #java -cp ${cpath}  ${mainClass}

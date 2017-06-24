@@ -23,8 +23,8 @@ public class PrintTimeTransformer implements ClassFileTransformer {
 
         if (className.matches(agentClass)) {
 
-            System.out .printf("transfer class '%s' - '%s' with pattern '%s' by PrintTimeTransformer\n", loader.toString(),
-                    className, agentClass);
+            System.out.printf("\n transfer class '%s' with pattern '%s' by PrintTimeTransformer\n",
+                className, agentClass);
 
             ClassReader reader = new ClassReader(classfileBuffer);
 

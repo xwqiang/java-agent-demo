@@ -52,6 +52,10 @@ public class StartAgent {
 
             if (klass.getName().replaceAll("\\.", "/").matches(Agent.agentClass)) {
 
+                System.out.println("------------------------------------------");
+                System.out.printf("re-transform Class %s\n", klass.getName());
+                System.out.println("------------------------------------------");
+
                 try {
 
                     inst.retransformClasses(klass);

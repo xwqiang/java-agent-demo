@@ -30,7 +30,6 @@ public class StartAgent {
 
         domain(args, inst);
 
-        retransformClasses(inst);
     }
 
 
@@ -47,13 +46,19 @@ public class StartAgent {
     }
 
 
-    private static void retransformClasses(Instrumentation inst) throws UnmodifiableClassException {
+    private static synchronized void retransformClasses(Instrumentation inst) {
 
         for (Class klass : inst.getAllLoadedClasses()) {
 
-            if (inst.isRetransformClassesSupported() && inst.isRedefineClassesSupported() && inst.isModifiableClass(klass)) {
+            if (klass.getName().replaceAll("\\.", "/").matches(Agent.agentClass)) {
 
-                inst.retransformClasses(klass);
+                try {
+
+                    inst.retransformClasses(klass);
+
+                } catch (UnmodifiableClassException e) {
+                    e.printStackTrace();
+                }
 
             }
 
@@ -65,6 +70,8 @@ public class StartAgent {
         setupBootstrap(args);
 
         inst.addTransformer(new PrintTimeTransformer(), true);
+
+        retransformClasses(inst);
 
     }
 

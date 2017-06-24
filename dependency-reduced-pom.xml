@@ -72,6 +72,12 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <argLine>-noverify</argLine>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
   <dependencies>

@@ -12,8 +12,11 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String[] args) {
+
         try {
+
             run(args);
+
         } catch (IOException e) {
             e.printStackTrace();
         } catch (AttachNotSupportedException e) {
@@ -29,20 +32,31 @@ public class Main {
 
     public static void run(String[] args)
         throws IOException, AttachNotSupportedException, AgentLoadException, AgentInitializationException {
+
         if (args == null || args.length <= 0) {
             System.out.println("usage: ./runsh.sh pid");
             System.exit(0);
         }
+
         String pid = args[0];
 
-        VirtualMachine vm = VirtualMachine.attach(pid);
-        String agentJar = System.getProperty("agent.Jar");
-        if (agentJar == null) {
-            System.out.println("please use -Dagent.Jar=[your agent jar path]");
-            System.exit(0);
+        VirtualMachine vm = null;
+
+        try {
+            vm = VirtualMachine.attach(pid);
+            String agentJar = System.getProperty("agent.Jar");
+            if (agentJar == null) {
+                System.out.println("please use -Dagent.Jar=[your agent jar path]");
+                System.exit(0);
+            }
+            System.out.printf("load agent.Jar path = '%s'\n", agentJar);
+            vm.loadAgent(agentJar);
+
+        } finally {
+            vm.detach();
         }
-        System.out.printf("load agent.Jar path = '%s'\n", agentJar);
-        vm.loadAgent(agentJar);
+
+
     }
 
 }

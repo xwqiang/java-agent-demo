@@ -8,7 +8,10 @@ Created-By: 1.6.0_29
 ```
 
 2. add tools.jar to your classpath,在启动脚本中配置
-
+    目标程序用：java -noverify -XX:-UseSplitVerifier 该特性在jdk 5 6 中非强制的，jdk8中已经rmoved了
+    https://stackoverflow.com/questions/31566672/java-8-what-is-the-equivalent-of-usesplitverifier
+    
+  
 3. 目的：(进行中)
   做一些常用的监控如：方法执行统计，答应执行的sql语句，方法中参数监控等
 ####附：agent jar中manifest的属性

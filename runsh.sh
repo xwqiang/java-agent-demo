@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 mvn clean
-mvn package
+mvn package verify
 cd target
 
 RESOURCE_PATH=classes/
@@ -45,9 +45,10 @@ agentJar="${PWD}/java-agent-demo-1.0.jar"
 
 ### parameters in agentmain ###
 #agentMainParam="agentClass=com/kuyun/test/Target,agentMethod=f"
-agentMainParam="agentClass=com/kuyun/cards/.*"
+agentMainParam="agentClass=com/kuyun/.*"
 
 ### startup main method ###
 mainClass="com.kuyun.launch.Main"
 
-java -cp ${cpath} -Dagent.Jar="${agentJar}=${agentMainParam}" ${mainClass} $1
+#-noverify -XX:-UseSplitVerifier 
+java -cp ${cpath} -noverify -Dagent.Jar="${agentJar}=${agentMainParam}" ${mainClass} $1

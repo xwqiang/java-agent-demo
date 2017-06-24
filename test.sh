@@ -14,4 +14,5 @@ done
 
 mainClass="com.kuyun.test.Target"
 
-java -cp ${cpath}  ${mainClass}
+java -noverify -XX:-UseSplitVerifier -cp ${cpath}  ${mainClass}
+#java -cp ${cpath}  ${mainClass}

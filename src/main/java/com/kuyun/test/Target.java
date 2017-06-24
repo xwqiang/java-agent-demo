@@ -2,6 +2,7 @@ package com.kuyun.test;
 
 
 import java.lang.management.ManagementFactory;
+import java.util.List;
 
 /**
  * Created by xuwuqiang on 2017/6/20.

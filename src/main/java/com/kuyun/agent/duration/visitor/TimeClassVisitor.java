@@ -28,6 +28,7 @@ public class TimeClassVisitor extends ClassVisitor {
         //过来待修改类的构造函数
         if (!name.equals("<init>") && mv != null) {
             mv = new AdviceAdapter(Opcodes.ASM5, mv, access, name, desc) {
+
                 //方法进入时获取开始时间
                 @Override
                 public void onMethodEnter() {
